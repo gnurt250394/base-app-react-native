@@ -158,7 +158,7 @@ function regexEmail(email) {
     message, validated
   }
 }
-function checkupDate(silent) {
+function checkupDate() {
   codePush.checkForUpdate().then(update => {
     if (update) {
       if (update.isMandatory) {
@@ -205,13 +205,14 @@ function checkupDate(silent) {
           { cancelable: false },
         );
       }
-    } else {
-      if (!silent)
-        alertSuccess("Bạn đang sử dụng phiên bản mới nhất");
-    }
+    } 
+    // else {
+    //   if (!silent)
+    //     alertSuccess("Bạn đang sử dụng phiên bản mới nhất");
+    // }
   }).catch(e => {
-    if (!silent)
-        alertSuccess("Bạn đang sử dụng phiên bản mới nhất");
+    // if (!silent)
+    //     alertSuccess("Bạn đang sử dụng phiên bản mới nhất");
   })
 }
 export default {

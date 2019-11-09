@@ -16,6 +16,7 @@ class SplashScreen extends Component {
     this.anim = new Animated.Value(0)
   }
   componentDidMount = async () => {
+    utils.checkupDate()
     utils.getItem(utils.KEY.KEY_HAS_UPDATE_NEW_VERSION).then(key => {
       utils.setItem(utils.KEY.KEY_HAS_UPDATE_NEW_VERSION, 0)
       if(key ==1){
