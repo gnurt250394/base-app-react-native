@@ -35,7 +35,7 @@ class FormQuestion1 extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 1 }}>
+                <View style={{ }}>
                     <Text style={styles.txtDate}>Ngày tháng năm sinh</Text>
                     <DatePicker
                         style={{ width:'40%' }}
@@ -49,7 +49,7 @@ class FormQuestion1 extends Component {
                         customStyles={{
                             dateInput: styles.dateInput,
                             placeholderText: {
-                                color: R.colors.black7
+                                color: R.colors.textColor
                             }
                             // ... You can check the source to find the other keys.
                         }}
@@ -62,6 +62,7 @@ class FormQuestion1 extends Component {
                                 keyboardType="numeric"
                                 style={styles.inputHeight}
                                 placeholder="cm"
+                                placeholderTextColor={R.colors.textColor}
                                 onChangeText={this.onChangeText('height')}
                             />
                         </View>
@@ -69,6 +70,7 @@ class FormQuestion1 extends Component {
                             <Text style={styles.txtHeight}>Cân nặng</Text>
                             <TextInput
                                 keyboardType="numeric"
+                                placeholderTextColor={R.colors.textColor}
                                 style={styles.inputHeight}
                                 placeholder="kg"
                                 onChangeText={this.onChangeText('weight')}
@@ -76,7 +78,7 @@ class FormQuestion1 extends Component {
                         </View>
                     </View>
                     {
-                        BMI ? <Text style={styles.txtBMI}>BMI của bạn là <Text style={{ color: R.colors.white }}>({BMI})</Text></Text> : null
+                        BMI ? <Text style={styles.txtBMI}>BMI của bạn là <Text style={{ color: R.colors.textColor }}>({BMI})</Text></Text> : null
                     }
                 </View>
                 <View style={styles.containerPage}>
@@ -100,12 +102,12 @@ class FormQuestion1 extends Component {
 const styles = StyleSheet.create({
     container: {
         padding: 10,
-        flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor:R.colors.white
     },
     txtDate: {
         paddingBottom: 6,
-        color: R.colors.white,
+        color: R.colors.defaultColor,
         fontFamily: R.fonts.Bold
     },
     button: {
@@ -114,18 +116,20 @@ const styles = StyleSheet.create({
     txtBetween: {
         paddingHorizontal: 15,
         paddingVertical: 6,
-        backgroundColor: R.colors.white
+        backgroundColor: R.colors.textColor,
+        color:R.colors.white
     },
     imageBack: {
         height: 22,
         width: 22,
         resizeMode: 'contain',
+        tintColor:R.colors.textColor
     },
     containerPage: {
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'center',
-        paddingTop: 20,
+        paddingTop: 50,
     },
     txtBMI: {
         textAlign: 'center',
@@ -136,11 +140,11 @@ const styles = StyleSheet.create({
         backgroundColor: R.colors.white,
         borderRadius: 5,
         height: 40,
-        borderColor:R.colors.gray,
-        borderWidth:1
+        borderColor:R.colors.black9,
+        borderWidth:1,
     },
     txtHeight: {
-        color: R.colors.white,
+        color: R.colors.defaultColor,
         paddingTop: 10,
         paddingBottom: 5,
         fontFamily: R.fonts.Bold

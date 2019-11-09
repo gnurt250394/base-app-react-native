@@ -44,7 +44,9 @@ class TestScreen extends Component {
             listInput: [],
             currentIndex: 0,
             listFinal: [],
-            selected: false
+            selected: false,
+            item: this.props.navigation.getParam('item', {}),
+            value:''
         };
         this.list = []
         this.data = []
@@ -52,35 +54,30 @@ class TestScreen extends Component {
     componentDidMount() {
         this.getData()
     }
+    groupObj = (myArray) => {
+        var group_to_values = myArray.reduce(function (obj, item) {
+            let a = {}
+            obj[item.position] = obj[item.position] || [];
+            obj[item.position].push(item);
+            return obj;
+        }, {});
+
+        var groups = Object.keys(group_to_values).map(function (key) {
+            return { _id: key, itemsQuestion: group_to_values[key] };
+        });
+        return groups
+    }
     getData = async () => {
         try {
-            let disease_id = (this.props.navigation.getParam('item', {}) || {})._id || ''
+            let disease_id = (this.state.item || {})._id || ''
             console.log('disease_id: ', disease_id);
-            console.log('this.props: ', this.props);
             let res = await apis.fetch(apis.PATH.QUESTION, { type: 1, disease_id })
             if (res && res.code == 200) {
                 let data = [...res.data]
-
-                let list = []
-                data.forEach((e, i) => {
-                    if (i % 5 == 0) {
-                        let obj = {
-                            itemsQuestion: data.splice(0, 5),
-                            _id: e._id,
-                            position: e.position
-                        }
-                        list.push(obj)
-                    } else {
-                        let obj = {
-                            itemsQuestion: data.splice(0, 5),
-                            _id: e._id,
-                            position: e.position
-
-                        }
-                        list.push(obj)
-                    }
-                })
-                this.setState({ data: res.data })
+                let list = this.groupObj(data)
+                list.unshift({ _id: 0, itemsQuestion: [] })
+                console.log('list: ', list);
+                this.setState({ data: [...list] })
             }
         } catch (error) {
 
@@ -158,8 +155,8 @@ class TestScreen extends Component {
             let point = this.data.reduce((total, current) => {
                 return total + parseInt(current.point)
             }, 0)
-
-            let res = await apis.post(apis.PATH.CONFIRM_ANWSER, { point })
+            let disease_id = (this.state.item || {})._id || ''
+            let res = await apis.post(apis.PATH.CONFIRM_ANWSER, { point, disease_id, glycemic: this.state.value })
             if (res && res.code == 200) {
                 utils.alertSuccess('Gửi câu hỏi thành công')
                 NavigationServices.navigate(screenName.TestResultScreen, {
@@ -174,21 +171,20 @@ class TestScreen extends Component {
         }
 
     }
-    onChangeText = (item) => (value) => {
+    onChangeText = (item) => (value, itemAnwser) => {
         let point = Number(value)
-        item.anwser.sort((a, b) => b.from_point - a.from_point || b.to_point - a.total_point)
-        let objPoint = item.anwser.find(e => point >= e.from_point && point <= e.to_point || point < item.anwser[0].from_point || point > item.anwser[item.anwser.length - 1].to_point)
-        let data = [...this.state.data]
+        itemAnwser.anwser.sort((a, b) => b.from_point - a.from_point || b.to_point - a.total)
+        let objPoint = itemAnwser.anwser.find(e => point >= e.from_point && point <= e.to_point || point < itemAnwser.anwser[0].from_point || point > itemAnwser.anwser[itemAnwser.anwser.length - 1].to_point)
         let list = []
-        data.forEach(e => {
-            if (e._id == item._id) {
+        item.itemsQuestion.forEach(e => {
+            if (e._id == itemAnwser._id) {
                 if (objPoint && objPoint._id) {
                     let obj = {
-                        anwser_id: item._id,
+                        anwser_id: itemAnwser._id,
                         name: value,
-                        point: objPoint.total_point,
+                        point: objPoint.total,
                         glycemic: point,
-                        _id: item._id,
+                        _id: itemAnwser._id,
                         checked: true
                     }
                     list.push(obj)
@@ -196,7 +192,7 @@ class TestScreen extends Component {
             }
         })
 
-        this.setState({ listChecked: list, selected: true }, () => {
+        this.setState({ listChecked: list, selected: true, value: point }, () => {
             console.log('selected: ', this.state.selected);
             console.log('listChecked: ', this.state.listChecked);
 
@@ -238,14 +234,14 @@ class TestScreen extends Component {
         this.checkList(item)
     }
     onIndexChanged = (currentIndex) => {
-
+        console.log('currentIndex: ', currentIndex);
         this.setState({ currentIndex })
     }
     onReport = () => {
         NavigationServices.navigate(screenName.ReportScreen)
     }
     render() {
-        const { listButton, data } = this.state
+        const { listButton, data, currentIndex } = this.state
         const { userApp } = this.props
         return (
             <ScrollView >
@@ -255,10 +251,10 @@ class TestScreen extends Component {
                     justifyContent: 'center',
                     height: height / 3 - 30
                 }}>
-                    <ScaleText size={20} style={styles.txtHello}>Xin chào, <ScaleText size={20} style={{
+                    <ScaleText size={20} style={styles.txtHello}>Xin chào, <ScaleText fontFamily="boldItalic" size={20} style={{
                         color: R.colors.defaultColor
                     }}>{userApp.name}</ScaleText></ScaleText>
-                    <ScaleText size={16} style={styles.TxtQuestion} >Trả lời ngay các câu hỏi sau đây để đánh giá tình trạng sức khỏe của bạn</ScaleText>
+                    <ScaleText fontFamily="lightItalic" size={16} style={styles.TxtQuestion} >Trả lời ngay các câu hỏi sau đây để đánh giá tình trạng sức khỏe của bạn</ScaleText>
 
                 </View>
 
@@ -269,9 +265,8 @@ class TestScreen extends Component {
                     <Swiper
                         loop={false}
                         onIndexChanged={this.onIndexChanged}
-                        scrollEnabled={false}
+                        // scrollEnabled={false}
                         showsPagination={false}
-                        height={height / 3}
                         ref={ref => this.swiper = ref}
                         style={styles.containerHeaderTitle}
                         showsButtons={false}>
@@ -330,7 +325,7 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     containerHeaderTitle: {
-        backgroundColor: R.colors.defaultColor,
+        // backgroundColor: R.colors.defaultColor,
         // height: height / 2,
 
     },

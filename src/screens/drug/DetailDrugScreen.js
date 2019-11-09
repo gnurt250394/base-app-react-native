@@ -34,7 +34,25 @@ class DetailDrugScreen extends Component {
                         <Text style={styles.txtFont}>- Chẩn đoán: <Text>{detailsDrug.diagnose}</Text></Text>
                         <View>
                             <Text style={styles.txtDrug}>- Thuốc điều trị:</Text>
-
+                            {detailsDrug && detailsDrug.drugs && detailsDrug.drugs.length > 0
+                                ?
+                                detailsDrug.drugs.map((e, i) => {
+                                    return (
+                                        <Text style={{
+                                            color: R.colors.textColor,
+                                            fontFamily: R.fonts.Semibold,
+                                            paddingLeft: 15,
+                                            paddingBottom: 10,
+                                        }} key={i}><View style={{
+                                            height:6,
+                                            width:6,
+                                            borderRadius:3,
+                                            backgroundColor:R.colors.textColor
+                                        }} /> {e.name}</Text>
+                                    )
+                                })
+                                : null
+                            }
                         </View>
                         <Text style={styles.txtFont}>- Lời dặn: <Text>{detailsDrug.advice}</Text></Text>
                     </View>

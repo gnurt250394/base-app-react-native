@@ -64,7 +64,8 @@ class HomeNotAuthScreen extends Component {
     onLogin = (item) => () => {
         NavigationServices.navigate(screenName.LoginScreen, {
             nextScreen: screenName.TestTodayScreen,
-            item
+            item,
+            type: 'today'
         })
     }
     _renderItem = ({ item, index }) => (
@@ -83,7 +84,8 @@ class HomeNotAuthScreen extends Component {
     )
     showMoreItem = () => {
         NavigationServices.navigate(screenName.GetAllSickScreen, {
-            data: this.state.data
+            data: this.state.data,
+            type: 'showMore'
         })
     }
     footerComponent = () => (

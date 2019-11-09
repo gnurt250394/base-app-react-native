@@ -56,9 +56,11 @@ class LoginScreen extends Component {
 
   onRegister = () => {
     let item = this.props.navigation.getParam('item', {})
+    let status = this.props.navigation.getParam('type', {})
     console.log('item: ', item);
     NavigationServices.navigate(screenName.InputPhoneScreen, {
-      item
+      item,
+      status
     })
   }
   onForgotPass = () => {

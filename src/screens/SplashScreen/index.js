@@ -16,6 +16,12 @@ class SplashScreen extends Component {
     this.anim = new Animated.Value(0)
   }
   componentDidMount = async () => {
+    utils.getItem(utils.KEY.KEY_HAS_UPDATE_NEW_VERSION).then(key => {
+      utils.setItem(utils.KEY.KEY_HAS_UPDATE_NEW_VERSION, 0)
+      if(key ==1){
+        utils.alertSuccess('Ứng dụng của bạn đã được cập nhật')
+      }
+    })
     firebase.messaging().getToken().then(res => {
       utils.database.tokenFCM = res
     })

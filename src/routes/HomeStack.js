@@ -30,6 +30,12 @@ import DetailDrugScreen from 'screens/drug/DetailDrugScreen';
 import TabDoctor from './TabDoctor';
 import AdvisoryScreen from 'screens/community/AdvisoryScreen';
 import GetAllSickScreen from 'screens/HomeScreen/GetAllSickScreen';
+import LoginScreen from 'screens/Login/LoginScreen';
+import ForgotPassScreen from 'screens/ForgotPassWord/ForgotPassScreen';
+import InputPhone from 'screens/Register/InputPhone';
+import OtpScreen from 'screens/Register/OtpScreen';
+import TestScreen from 'screens/Test/TestScreen';
+import TestResultScreen from 'screens/Test/TestResultScreen';
 const handleCustomTransition = ({ scenes }) => {
     const prevScene = scenes[scenes.length - 2];
     const nextScene = scenes[scenes.length - 1];
@@ -73,7 +79,16 @@ const homeStack = createStackNavigator({
     [screenName.DetailDrugScreen]: { screen: DetailDrugScreen },
     [screenName.TabDoctor]: { screen: AdvisoryScreen },
     [screenName.GetAllSickScreen]: { screen: GetAllSickScreen },
-    
+    //authen
+    // [screenName.LoginScreen]: { screen: LoginScreen },
+    // [screenName.RegisterScreen]: { screen: RegisterScreen },
+    // [screenName.ForgotPasswordScreen]: { screen: ForgotPassScreen },
+    // [screenName.ListHospitalScreen]: { screen: ListHospitalScreen },
+    // [screenName.InputPhoneScreen]: { screen: InputPhone },
+    // [screenName.OtpScreen]: { screen: OtpScreen },
+    // [screenName.TestScreen]: { screen: TestScreen },
+    // [screenName.TestResultScreen]: { screen: TestResultScreen },
+
 }, {
     initialRouteName: screenName.HomeScreen,
     headerMode: 'none',

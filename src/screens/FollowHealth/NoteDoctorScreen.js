@@ -1,65 +1,67 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, SectionList } from 'react-native';
 import Container from 'library/Container';
 import R from 'res/R';
+import apis from 'configs/apis';
 
 class NoteDoctorScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {
-                    id: 1,
-                    name: 'Điều trị y tế',
-                    new: 'Lời dặn mới',
-                    note: 'Lời dặn chung về vấn đề chế độ ăn uống, các thức ăn nên và không nên ăn, các hoạt động nên luyện tập và nên tránh...'
-                },
-                {
-                    id: 2,
-                    name: 'Chế độ ăn uống, luyện tập',
-                    new: 'Lời dặn mới',
-                    note: 'Lời dặn chung về vấn đề chế độ ăn uống, các thức ăn nên và không nên ăn, các hoạt động nên luyện tập và nên tránh...'
-                },
-                {
-                    id: 3,
-                    name: 'Dấu hiệu cần lưu ý',
-                    new: 'Lời dặn mới',
-                    note: 'Lời dặn chung về vấn đề chế độ ăn uống, các thức ăn nên và không nên ăn, các hoạt động nên luyện tập và nên tránh...'
-                },
-                {
-                    id: 4,
-                    name: 'Điều trị y tế',
-                    new: 'Lời dặn mới',
-                    note: 'Lời dặn chung về vấn đề chế độ ăn uống, các thức ăn nên và không nên ăn, các hoạt động nên luyện tập và nên tránh...'
-                },
-            ]
+            data: [],
+            type: ''
         };
+    }
+    componentDidMount = () => {
+        this.getData()
+    }
+    getData = async () => {
+        let res = await apis.fetch(apis.PATH.LIST_NOTE)
+        if (res && res.code == 200) {
+            this.setState({
+                data: res.data,
+                type: res.type
+            })
+        }
     }
     _keyExtractor = (item, index) => `${item.id || index}`
     _renderItem = ({ item, index }) => {
+        if (item.type == '1' &&( this.state.type == '3' || this.state.type == '2')) {
+            return (
+                <View style={{ paddingTop: 10 }}>
+                    <Text style={{
+                        fontFamily: R.fonts.LightItalic,
+                        color: R.colors.red
+                    }}>- {item.name}</Text>
+
+                    {/* <Text >({item.note})</Text> */}
+                </View>
+            )
+        }
         return (
-            <View style={{paddingTop:10}}>
+            <View >
                 <Text style={{
-                    fontFamily: R.fonts.Bold,
-                    fontSize: 16
-                }}>{item.name}</Text>
-                <Text style={{
-                    fontFamily: R.fonts.Italic,
-                    color: R.colors.defaultColor
-                }}>{item.new}</Text>
-                <Text >({item.note})</Text>
+
+                }}>- {item.name}</Text>
             </View>
         )
     }
     render() {
-        const { data } = this.state
+        const { data, list } = this.state
         return (
             <Container >
-                <FlatList
-                    data={data}
+                <SectionList
+                    sections={data}
                     style={{ padding: 10 }}
                     renderItem={this._renderItem}
                     keyExtractor={this._keyExtractor}
+                    renderSectionHeader={({ section: { title } }) => (
+                        <Text style={{
+                            fontFamily: R.fonts.Bold,
+                            fontSize: 16,
+                            paddingVertical: 10,
+                        }}>{title}</Text>
+                    )}
                 />
 
             </Container>

@@ -9,6 +9,7 @@ import utils, { height } from 'configs/utils';
 import ActionSheet from 'react-native-actionsheet'
 import PushNotification from 'components/PushNotification';
 import { connect } from 'react-redux';
+import apis from 'configs/apis';
 
 class HomeLoginScreen extends Component {
     constructor(props) {
@@ -44,8 +45,8 @@ class HomeLoginScreen extends Component {
                 {
                     id: 4,
                     onPress: () => {
-                        // utils.alertWarn('Chức năng đang phát triển')
-                        // return
+                        utils.alertWarn('Chức năng đang phát triển')
+                        return
                         NavigationServices.navigate(screenName.TabDoctor)
                     },
                     image: R.images.icons.home.ic_doctor,
@@ -70,10 +71,24 @@ class HomeLoginScreen extends Component {
     onReport = () => {
         NavigationServices.navigate(screenName.ReportScreen)
     }
-    onSend = () => {
-        NavigationServices.navigate(screenName.TestTodayScreen, {
-            value: this.state.value
-        })
+    onSend = async () => {
+        if (!this.state.value) {
+            utils.alertDanger('Vui lòng nhập chỉ số')
+            return
+        }
+        let res = await apis.fetch(apis.PATH.CHECK_TYPE)
+        if (res && res.code == 200) {
+            NavigationServices.navigate(screenName.TestTodayScreen, {
+                value: this.state.value
+            })
+        } else {
+            NavigationServices.navigate(screenName.GetAllSickScreen, {
+                type: 'today',
+                value: this.state.value
+
+            })
+        }
+
     }
     onChangeText = (value) => {
         this.setState({ value })
@@ -81,6 +96,8 @@ class HomeLoginScreen extends Component {
     render() {
         const { listButton } = this.state
         const { userApp } = this.props
+        const question = 'Hôm nay chỉ số đường huyết của bạn là bao nhiêu?'
+        // const question = 'Trả lời ngay các câu hỏi để khảo sát tình hình sức khỏe của bạn'
         return (
             <Container style={styles.flex}
                 scrollView={true}
@@ -91,17 +108,17 @@ class HomeLoginScreen extends Component {
                         color: R.colors.defaultColor
                     }}>{userApp.name}</ScaleText></ScaleText>
                     <View style={styles.containerHeaderTitle}>
-                        <ScaleText  fontFamily="lightItalic" size={16} style={styles.TxtQuestion} >Trả lời ngay các câu hỏi để khảo sát tình hình sức khỏe của bạn</ScaleText>
+                        <ScaleText fontFamily="lightItalic" size={16} style={styles.TxtQuestion} >{question}</ScaleText>
                         <View style={styles.containerInput}>
-                            {/* <TextInput
+                            <TextInput
                                 placeholder="Nhập câu trả lời"
                                 keyboardType="numeric"
                                 onChangeText={this.onChangeText}
-                                style={styles.input} /> */}
+                                style={styles.input} />
                             <TouchableOpacity
                                 onPress={this.onSend}
                                 style={styles.buttonSend}>
-                                <ScaleText fontFamily="bold" style={styles.txtSend}>Bắt đầu khảo sát</ScaleText>
+                                <ScaleText fontFamily="bold" style={styles.txtSend}>Gửi</ScaleText>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -129,7 +146,7 @@ class HomeLoginScreen extends Component {
 
 
                 </View>
-               
+
                 <PushNotification />
             </Container>
         );
@@ -156,13 +173,14 @@ const styles = StyleSheet.create({
         paddingVertical: 13
     },
     txtSend: {
-        color: R.colors.black
+        color: R.colors.white
     },
     buttonSend: {
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor:R.colors.white,
-        borderRadius:5
+        // backgroundColor:R.colors.white,
+        borderRadius: 5,
+        // marginLeft:10
     },
     input: {
         backgroundColor: R.colors.white,
@@ -179,7 +197,8 @@ const styles = StyleSheet.create({
     TxtQuestion: {
         color: R.colors.white,
         textAlign: 'center',
-        paddingBottom: 20
+        paddingBottom: 20,
+        paddingHorizontal: 10,
     },
     txtNameButton: {
         paddingTop: 10,

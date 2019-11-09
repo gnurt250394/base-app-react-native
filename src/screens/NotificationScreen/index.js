@@ -14,7 +14,7 @@ class NotificationScreen extends Component {
     super(props);
     this.state = {
       data: [],
-      isLoading: false,
+      isLoading: true,
       count: ''
     };
   }
@@ -33,6 +33,7 @@ class NotificationScreen extends Component {
 
   getData = async () => {
     let res = await apis.fetch(apis.PATH.NOTIFICATION)
+    this.setState({ isLoading: false })
     if (res && res.code == 200) {
       this.setState({ data: res.data, count: res.count })
       this.props.dispatch(updateCountNoti(res.count))
@@ -79,7 +80,7 @@ class NotificationScreen extends Component {
     )
   }
   keyExtractor = (item, index) => `${item._id || index}`
-  listEmpty = () => <Text style={{
+  listEmpty = () => !this.state.isLoading && <Text style={{
     paddingTop: 30,
     textAlign: 'center',
     fontFamily: R.fonts.Bold,
@@ -95,6 +96,19 @@ class NotificationScreen extends Component {
         flex: 1,
         backgroundColor: '#eee'
       }}>
+        <View style={{
+          backgroundColor: R.colors.defaultColor,
+          minHeight: 60,
+          justifyContent: 'center',
+          // paddingLeft:30
+          alignItems: 'center'
+        }}>
+          <Text style={{
+            color: R.colors.white,
+            fontFamily: R.fonts.Heavy,
+            fontSize: 17
+          }}>Thông báo</Text>
+        </View>
         <FlatList
           data={data}
           renderItem={this.renderItem}

@@ -5,6 +5,7 @@ import DatePicker from 'react-native-datepicker'
 import R from 'res/R';
 import { width } from 'configs/utils';
 import { CheckBox } from 'native-base'
+import FormQuestion1 from './FormQuestion1';
 class FormQuestion2 extends Component {
     constructor(props) {
         super(props);
@@ -49,6 +50,9 @@ class FormQuestion2 extends Component {
                             backgroundColor: R.colors.white,
                             borderRadius: 5,
                             paddingLeft: 10,
+                            marginBottom:10,
+                            borderWidth:1,
+                            borderColor:R.colors.black9
                         }}
                         keyboardType="numeric"
                         onBlur={this.onBlur(item)}
@@ -64,21 +68,9 @@ class FormQuestion2 extends Component {
                                 <TouchableOpacity
                                     onPress={this.onPressCheck(item.anwser, e)}
                                     key={i} style={styles.buttonChecked}>
-                                    <View style={{
-                                        backgroundColor: R.colors.white,
-                                        borderRadius: 11,
-                                        width: 22,
-                                        height: 22,
-                                        alignItems: 'center',
-                                        justifyContent: 'center'
-                                    }}>
+                                    <View style={styles.containerCheckbox}>
                                         {
-                                            e.checked ? <View style={{
-                                                backgroundColor: R.colors.blue,
-                                                height: 16,
-                                                width: 16,
-                                                borderRadius: 8,
-                                            }} /> : null
+                                            e.checked ? <View style={styles.icCheck} /> : null
                                         }
                                     </View>
                                     <Text style={styles.TxtAnwser}>{this.data[i]}. {e.name}</Text>
@@ -112,9 +104,12 @@ class FormQuestion2 extends Component {
         }
     }
     renderItem = ({ item, index }) => {
+
         return (
             <View style={{ flex: 1, paddingTop: 20 }}>
-                <Text style={styles.txtDate}>{index + 1}. {item.name}</Text>
+                <Text style={styles.txtDate}><Text style={{
+                    color:R.colors.defaultColor
+                }}>{index + 1}.</Text> {item.name}</Text>
                 <View >
                     {this.renderItemAnwser(item)
                     }
@@ -129,7 +124,9 @@ class FormQuestion2 extends Component {
         const { BMI } = this.state
         const { index, length, item } = this.props
         return (
-            <View style={styles.container}>
+            <View
+                onLayout={this.props.onLayout}
+                style={styles.container}>
                 <FlatList
                     data={item.itemsQuestion}
                     renderItem={this.renderItem}
@@ -159,7 +156,7 @@ class FormQuestion2 extends Component {
                     <TouchableOpacity
                         onPress={this.props.onPress}
                         style={styles.button}>
-                        <Image source={R.images.icons.ic_next_arrow} style={[styles.imageBack, { tintColor: index == length - 1 ? R.colors.gray : R.colors.white }]} />
+                        <Image source={R.images.icons.ic_next_arrow} style={[styles.imageBack, { tintColor: index == length - 1 ? R.colors.gray : R.colors.textColor }]} />
                     </TouchableOpacity>
                 </View>
 
@@ -169,9 +166,24 @@ class FormQuestion2 extends Component {
 }
 
 const styles = StyleSheet.create({
+    icCheck: {
+        backgroundColor: R.colors.defaultColor,
+        height: 16,
+        width: 16,
+        borderRadius: 8,
+    },
+    containerCheckbox: {
+        borderColor: R.colors.defaultColor,
+        borderWidth: 1,
+        borderRadius: 11,
+        width: 22,
+        height: 22,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     TxtAnwser: {
         paddingLeft: 10,
-        color: R.colors.white,
+        color: R.colors.black,
         fontFamily: R.fonts.BlackItalic
     },
     buttonChecked: {
@@ -182,14 +194,15 @@ const styles = StyleSheet.create({
     iconChecked: {
         height: 17,
         width: 17,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        tintColor: R.colors.defaultColor
     },
     containerChecked: {
         backgroundColor: R.colors.white,
         height: 20,
         width: 20,
         borderRadius: 3,
-        borderColor: R.colors.gray,
+        borderColor: R.colors.defaultColor,
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center'
@@ -203,7 +216,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: R.colors.white,
+        backgroundColor: R.colors.secondColor,
         width: '30%',
         borderRadius: 10,
         alignSelf: 'center',
@@ -211,11 +224,12 @@ const styles = StyleSheet.create({
     },
     container: {
         padding: 10,
-        flex: 1,
+        backgroundColor: R.colors.white,
+
     },
     txtDate: {
         paddingBottom: 10,
-        color: R.colors.white,
+        color: R.colors.defaultColor,
         fontFamily: R.fonts.Bold
     },
     button: {
@@ -224,12 +238,14 @@ const styles = StyleSheet.create({
     txtBetween: {
         paddingHorizontal: 15,
         paddingVertical: 6,
-        backgroundColor: R.colors.white
+        backgroundColor: R.colors.textColor,
+        color:R.colors.white
     },
     imageBack: {
         height: 22,
         width: 22,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        tintColor:R.colors.textColor
     },
     containerPage: {
         flexDirection: 'row',

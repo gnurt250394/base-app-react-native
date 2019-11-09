@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage'
-
-import { Dimensions } from 'react-native';
+import codePush from "react-native-code-push";
+import { Dimensions, Alert } from 'react-native';
 import { showMessage } from 'react-native-flash-message'
 import NavigationServices from 'routes/NavigationServices';
 import screenName from './screenName';
@@ -8,10 +8,11 @@ import firebase from 'react-native-firebase';
 const database = {
   token: '',
   tokenFCM: '',
-  forgotPass:'forgotPass'
+  forgotPass: 'forgotPass'
 }
 const KEY = {
-  TOKEN: 'TOKEN'
+  TOKEN: 'TOKEN',
+  KEY_HAS_UPDATE_NEW_VERSION: 'KEY_HAS_UPDATE_NEW_VERSION'
 }
 export function guid() {
   function s4() {
@@ -157,7 +158,62 @@ function regexEmail(email) {
     message, validated
   }
 }
-
+function checkupDate(silent) {
+  codePush.checkForUpdate().then(update => {
+    if (update) {
+      if (update.isMandatory) {
+        Alert.alert(
+          'THÔNG BÁO',
+          'Ứng dụng đã có phiên bản mới. Bạn vui lòng cập nhật để có trải nghiệm tốt nhất!',
+          [
+            {
+              text: 'Cập nhật', onPress: () => {
+                alertSuccess("Ứng dụng đang được cập nhật, vui lòng chờ")
+                codePush.sync({
+                  // updateDialog: true,
+                  installMode: codePush.InstallMode.IMMEDIATE
+                }).then(s => {
+                  setItem(KEY.KEY_HAS_UPDATE_NEW_VERSION, 1);
+                });
+              }
+            },
+          ],
+          { cancelable: false },
+        );
+      } else {
+        Alert.alert(
+          'THÔNG BÁO',
+          'Ứng dụng đã có phiên bản mới. Bạn vui lòng cập nhật để có trải nghiệm tốt nhất!',
+          [
+            {
+              text: 'Để sau',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+            {
+              text: 'Cập nhật', onPress: () => {
+                alertSuccess("Ứng dụng đang được cập nhật, vui lòng chờ")
+                codePush.sync({
+                  // updateDialog: true,
+                  installMode: codePush.InstallMode.IMMEDIATE
+                }).then(s => {
+                  setItem(KEY.KEY_HAS_UPDATE_NEW_VERSION, 1);
+                });
+              }
+            }
+          ],
+          { cancelable: false },
+        );
+      }
+    } else {
+      if (!silent)
+        alertSuccess("Bạn đang sử dụng phiên bản mới nhất");
+    }
+  }).catch(e => {
+    if (!silent)
+        alertSuccess("Bạn đang sử dụng phiên bản mới nhất");
+  })
+}
 export default {
   getItem,
   setItem,
@@ -174,5 +230,6 @@ export default {
   regexEmail,
   regexPassword,
   regexPhone,
-  regexName
+  regexName,
+  checkupDate
 }

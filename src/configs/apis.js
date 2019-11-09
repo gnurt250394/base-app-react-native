@@ -217,7 +217,9 @@ export default {
     DETAIL_DRUG:'details-drug',
     SICK:'list-sicks',
     PRESCRIPTION:'list-prescription',
-    DETAIL_PRESCRIPTION:'details-prescription'
+    DETAIL_PRESCRIPTION:'details-prescription',
+    LIST_NOTE:'list-noteDoctor',
+    CHECK_TYPE:'check-type'
   },
   fetch,
   put,

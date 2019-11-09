@@ -107,7 +107,10 @@ class OtpScreen extends Component {
             } else {
               NavigationServices.navigate(screenName.RegisterScreen, {
                 phone,
-                item: this.props.navigation.getParam('item', {})
+                item: this.props.navigation.getParam('item', {}),
+                status: this.props.navigation.getParam('status', {}),
+                
+
               })
 
             }
@@ -137,7 +140,8 @@ class OtpScreen extends Component {
         } else {
           NavigationServices.navigate(screenName.RegisterScreen, {
             phone: this.state.phone,
-            item: this.props.navigation.getParam('item', {})
+            item: this.props.navigation.getParam('item', {}),
+            status: this.props.navigation.getParam('status', {}),
             
           })
 

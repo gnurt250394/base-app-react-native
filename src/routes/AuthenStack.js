@@ -11,6 +11,8 @@ import OtpScreen from 'screens/Register/OtpScreen';
 import TestScreen from 'screens/Test/TestScreen';
 import TestResultScreen from 'screens/Test/TestResultScreen';
 import ChangePassScreen from 'screens/AccountScreen/ChangePassScreen';
+import GetAllSickScreen from 'screens/HomeScreen/GetAllSickScreen';
+import ReportScreen from 'screens/Report/ReportScreen';
 const handleCustomTransition = ({ scenes }) => {
     const prevScene = scenes[scenes.length - 2];
     const nextScene = scenes[scenes.length - 1];
@@ -36,6 +38,8 @@ const authenStack = createStackNavigator({
     [screenName.TestScreen]: { screen: TestScreen },
     [screenName.TestResultScreen]: { screen: TestResultScreen },
     [screenName.ChangePassScreen]: { screen: ChangePassScreen },
+    [screenName.GetAllSickScreen]: { screen: GetAllSickScreen },
+    [screenName.ReportScreen]: { screen: ReportScreen },
 }, {
     initialRouteName: screenName.LoginScreen,
     headerMode: 'none',

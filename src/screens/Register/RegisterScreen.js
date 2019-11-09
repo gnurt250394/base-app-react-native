@@ -45,9 +45,17 @@ class RegisterScreen extends Component {
         if (res && res.code == status.SUCCESS) {
             utils.database.token = res.token
             utils.alertSuccess('Đăng ký thành công')
-            NavigationServices.navigate(screenName.TestScreen, {
-                item: this.props.navigation.getParam('item', {})
-            })
+            let status = this.props.navigation.getParam('status', {})
+            if (status == 'today') {
+                NavigationServices.navigate(screenName.TestScreen, {
+                    item: this.props.navigation.getParam('item', {})
+                })
+            } else {
+                NavigationServices.navigate(screenName.GetAllSickScreen, {
+                    item: this.props.navigation.getParam('item', {})
+                })
+            }
+
             this.props.dispatch(login(res.data))
             utils.setItem(utils.KEY.TOKEN, res.token)
         } else {

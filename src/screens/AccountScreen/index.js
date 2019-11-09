@@ -9,6 +9,7 @@ import { logout } from 'middlewares/actions/login/actionLogin'
 import R from 'res/R'
 import LinearGradient from 'react-native-linear-gradient';
 import LoginRequire from './LoginRequire'
+import DeviceInfo from 'react-native-device-info';
 
 class AccountScreen extends Component {
     state = {
@@ -39,10 +40,23 @@ class AccountScreen extends Component {
                     utils.logout()
                 }
             },
-        ]
-    }
+        ],
+        ver1: '',
+        ver2: ''
 
+    }
+    componentDidMount = async () => {
+        let ver1 = await DeviceInfo.getVersion()
+        let ver2 = await DeviceInfo.getBuildNumber()
+        this.setState({ ver1, ver2 })
+    };
+
+    checkUpdate = () => {
+        utils.alertSuccess('Ứng dụng đang được cập nhật');
+        utils.checkupDate();
+    }
     render() {
+        console.log(' DeviceInfo.getVersion(): ', DeviceInfo.getVersion());
         const { userApp } = this.props
         const source = userApp.image ? { uri: userApp.image } : R.images.icons.ic_user
         if (!utils.database.token) {
@@ -107,6 +121,10 @@ class AccountScreen extends Component {
                         )
                     })}
 
+                    <TouchableOpacity style={[styles.buttonUpfate]} onPress={this.checkUpdate}>
+                        <Text style={[styles.txtUpdate]}>{'Phiên bản ' + this.state.ver1 + '.' + this.state.ver2}</Text>
+
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         )
@@ -116,5 +134,17 @@ const mapStateToProps = (state) => ({
     userApp: state.loginReducer.userApp || {}
 });
 
+const styles = StyleSheet.create({
+    txtUpdate: {
+        color: '#000',
+        fontFamily: R.fonts.SemiboldItalic
+    },
+    buttonUpfate: {
+        borderBottomWidth: 0,
+        paddingHorizontal: 10,
+        paddingTop: '15%',
+        alignSelf: 'center'
+    },
 
+});
 export default connect(mapStateToProps)(AccountScreen)

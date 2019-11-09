@@ -64,21 +64,21 @@ export default class VideoCallScreen extends React.Component {
     const config = {
       iceServers: [
         { urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302'] },
-        {
-          'urls': 'turn:45.252.248.114:3478?transport=udp',
-          'credential': 'B0h3m14nrh4ps0dy',
-          'username': 'vskin8899'
-        },
-        {
-          urls: 'turn:45.252.248.114:3478?transport=tcp',
-          credential: 'B0h3m14nrh4ps0dy',
-          username: 'vskin8899'
-        }
+        // {
+        //   'urls': 'turn:45.252.248.114:3478?transport=udp',
+        //   'credential': 'B0h3m14nrh4ps0dy',
+        //   'username': 'vskin8899'
+        // },
+        // {
+        //   urls: 'turn:45.252.248.114:3478?transport=tcp',
+        //   credential: 'B0h3m14nrh4ps0dy',
+        //   username: 'vskin8899'
+        // }
       ]
     }
     this.rtcPeerConnection = new RTCPeerConnection(config)
 
-    this.rtcPeerConnection.onicecandidate = event => {
+    this.rtcPeerConnection.onicecandidate = function (event) {
       console.log('event: ', event);
       console.log('onicecandidate fired')
       if (event.candidate) {

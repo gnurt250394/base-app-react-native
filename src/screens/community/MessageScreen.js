@@ -41,7 +41,7 @@ class MessageScreen extends Component {
     const { item } = this.state
     console.log('item: ', item);
     NavigationServices.navigate(screenName.VideoCallScreen, {
-      data: item._id
+      data: item
     })
   }
   _renderItem = ({ item, index }) => {
