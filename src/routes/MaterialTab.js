@@ -7,7 +7,6 @@ import NotificationScreen from 'screens/NotificationScreen';
 import screenName from 'configs/screenName';
 import utils from 'configs/utils';
 import LoginScreen from 'screens/Login/LoginScreen';
-import CheckLoginScreen from 'screens/CheckLoginScreen';
 
 
 class MaterialTab extends React.Component {
@@ -24,8 +23,6 @@ class MaterialTab extends React.Component {
 
     _renderScene = BottomNavigation.SceneMap({
         [screenName.HomeScreen]: HomeScreen,
-        [screenName.AccountScreen]:utils.database.token? AccountScreen : CheckLoginScreen,
-        [screenName.NotificationScreen]:utils.database.token?  NotificationScreen : CheckLoginScreen,
     });
 
     render() {

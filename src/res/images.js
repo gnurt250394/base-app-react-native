@@ -20,12 +20,6 @@ export default {
         ic_profile: require('res/images/icons/profile/ic_profile.png'),
         ic_upload: require('res/images/icons/profile/ic_upload.png'),
         },
-        drug: {
-            ic_prescription: require('res/images/icons/drug/ic_prescription.png'),
-            ic_cart: require('res/images/icons/drug/ic_cart.png'),
-            ic_search: require('res/images/icons/drug/ic_search.png'),
-            ic_drugs: require('res/images/icons/drug/ic_drugs.png'),
-        },
         home: {
             add: require('res/images/icons/home/add.png'),
             address: require('res/images/icons/home/address.png'),
@@ -43,12 +37,6 @@ export default {
             ic_ehealth: require('res/images/icons/home/ic_ehealth.png'),
             ic_flamingo: require('res/images/icons/home/ic_flamingo.png'),
             ic_warning: require('res/images/icons/home/ic_warning.png'),
-        },
-        follow_health: {
-            ic_note: require('res/images/icons/followHealth/ic_note.png'),
-            ic_success: require('res/images/icons/followHealth/ic_success.png'),
-            ic_warning: require('res/images/icons/followHealth/ic_warning.png'),
-            ic_danger: require('res/images/icons/followHealth/ic_danger.png'),
         },
     },
     default: {

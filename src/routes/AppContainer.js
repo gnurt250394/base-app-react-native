@@ -9,7 +9,6 @@ import SplashScreen from 'screens/SplashScreen';
 import DrawerStack from './DrawerStack';
 import BottomTabStack from './BottomTabStack';
 import MaterialTab from './MaterialTab';
-import IntroScreen from 'screens/Intro/IntroScreen';
 
 const appNavigator = createAnimatedSwitchNavigator({
   [screenName.SplashScreen]: { screen: SplashScreen },

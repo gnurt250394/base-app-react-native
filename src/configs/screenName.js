@@ -24,7 +24,6 @@ export default {
     HospitalScreen:'Danh sách bệnh viện',
     InputPhoneScreen:'Xác thực số điện thoại',
     OtpScreen:'OtpScreen',
-    TestScreen:'TestScreen',
     TestTodayScreen:'Kiểm tra tình trạng sức khỏe',
     ReportScreen:'Dấu hiệu bất thường',
     TestResultScreen:'TestResultScreen',
