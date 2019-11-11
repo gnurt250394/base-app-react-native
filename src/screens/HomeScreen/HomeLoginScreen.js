@@ -45,8 +45,8 @@ class HomeLoginScreen extends Component {
                 {
                     id: 4,
                     onPress: () => {
-                        // utils.alertWarn('Chức năng đang phát triển')
-                        // return
+                        utils.alertWarn('Chức năng đang phát triển')
+                        return
                         NavigationServices.navigate(screenName.TabDoctor)
                     },
                     image: R.images.icons.home.ic_doctor,

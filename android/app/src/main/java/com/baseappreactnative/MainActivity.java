@@ -1,4 +1,4 @@
-package com.honghactest;
+package com.baseappreactnative;
 
 import io.wazo.callkeep.RNCallKeepModule;
 import com.facebook.react.ReactActivity;

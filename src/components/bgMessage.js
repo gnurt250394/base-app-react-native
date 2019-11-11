@@ -28,7 +28,7 @@ export default async (message) => {
         RNCallKeepManager.displayIncommingCall(0)
         // sendEventDidDisplayIncommingCall(message.data.doctor_id, message.data.videoCallId)
         // setTimeout(() => {
-        //     LaunchApplication.open('com.honghactest')
+        //     LaunchApplication.open('com.baseappreactnative')
         // }, 500)
     }
 

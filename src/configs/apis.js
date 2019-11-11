@@ -1,12 +1,16 @@
 import Axios from 'axios'
 import utils from './utils'
 import { showLoading, hideLoading } from 'library/Loading/LoadingComponent'
-// const BASE_URL = 'http://192.168.0.105:8000/api/'
-// export const BASE_URI = 'http://192.168.0.105:8000/'
-// export const BASE_SOCKET = 'http://192.168.0.105:3001'
-const BASE_URL = 'http://10.0.40.13:8000/api/'
-export const BASE_URI = 'http://10.0.40.13:8000/'
-export const BASE_SOCKET = 'http://10.0.40.13:3001'
+// const BASE_URL = 'http://192.168.0.104:8000/api/'
+// export const BASE_URI = 'http://192.168.0.104:8000/'
+// export const BASE_SOCKET = 'http://192.168.0.104:3001'
+// const BASE_URL = 'http://10.0.40.13:8000/api/'
+// export const BASE_URI = 'http://10.0.40.13:8000/'
+// export const BASE_SOCKET = 'http://10.0.40.13:3001'
+const BASE_URL = 'https://app-hackathon-2019.herokuapp.com/api/'
+export const BASE_URI = 'https://app-hackathon-2019.herokuapp.com/'
+export const BASE_SOCKET = 'https://app-hackathon-2019.herokuapp.com:3001'
+
 const SERVER_TIMEOUT = 10000
 let constants = Axios.create({
   baseURL: BASE_URL,
