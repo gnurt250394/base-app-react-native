@@ -11,8 +11,8 @@ import BottomTabStack from './BottomTabStack';
 import MaterialTab from './MaterialTab';
 
 const appNavigator = createAnimatedSwitchNavigator({
-  [screenName.SplashScreen]: { screen: SplashScreen },
   [screenName.HomeStack]: { screen: HomeStack },
+  [screenName.SplashScreen]: { screen: SplashScreen },
   [screenName.AuthenStack]: { screen: AuthenStack },
 
 }, {

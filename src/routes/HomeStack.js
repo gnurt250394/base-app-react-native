@@ -12,6 +12,8 @@ import DistrictScreen from 'screens/AccountScreen/DistrictScreen';
 import CommunesScreen from 'screens/AccountScreen/CommunesScreen';
 import ChangePassScreen from 'screens/AccountScreen/ChangePassScreen';
 import GetAllSickScreen from 'screens/HomeScreen/GetAllSickScreen';
+import VoiceScreen from 'screens/Voice/VoiceScreen';
+import TextToSpeech from 'screens/Voice/TextToSpeech';
 const handleCustomTransition = ({ scenes }) => {
     const prevScene = scenes[scenes.length - 2];
     const nextScene = scenes[scenes.length - 1];
@@ -35,8 +37,10 @@ const homeStack = createStackNavigator({
     [screenName.CommunesScreen]: { screen: CommunesScreen },
     [screenName.ChangePassScreen]: { screen: ChangePassScreen },
     [screenName.GetAllSickScreen]: { screen: GetAllSickScreen },
+    [screenName.VoiceScreen]: { screen: VoiceScreen },
+    [screenName.TextToSpeech]: { screen: TextToSpeech },
 }, {
-    initialRouteName: screenName.HomeScreen,
+    initialRouteName: screenName.VoiceScreen,
     headerMode: 'none',
     transitionConfig: (transitionProps) => handleCustomTransition(transitionProps),
 })
