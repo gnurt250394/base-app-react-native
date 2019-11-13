@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Slider } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
 import { RNCamera } from 'react-native-camera';
-
+import RNTextDetector from "react-native-text-detector";
 const flashModeOrder = {
     off: 'on',
     on: 'auto',
@@ -50,6 +50,36 @@ export default class DetectWithCamera extends React.Component {
         });
     }
 
+    detectText = async () => {
+        try {
+            const options = {
+                quality: 0.8,
+                base64: true,
+                skipProcessing: true,
+            };
+            const images = await this.camera.takePictureAsync(options);
+            const visionResp = await RNTextDetector.detectFromUri(images.uri);
+            console.log('visionResp', visionResp);
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+    mapVisionRespToScreen = (visionResp, imageProperties) => {
+        const IMAGE_TO_SCREEN_Y = screenHeight / imageProperties.height;
+        const IMAGE_TO_SCREEN_X = screenWidth / imageProperties.width;
+
+        return visionResp.map(item => {
+            return {
+                ...item,
+                position: {
+                    width: item.bounding.width * IMAGE_TO_SCREEN_X,
+                    left: item.bounding.left * IMAGE_TO_SCREEN_X,
+                    height: item.bounding.height * IMAGE_TO_SCREEN_Y,
+                    top: item.bounding.top * IMAGE_TO_SCREEN_Y
+                }
+            };
+        });
+    };
     toggleFlash() {
         this.setState({
             flash: flashModeOrder[this.state.flash],
@@ -86,10 +116,11 @@ export default class DetectWithCamera extends React.Component {
         });
     }
 
-    takePicture = async function () {
+    takePicture = async () => {
         if (this.camera) {
-            const data = await this.camera.takePictureAsync();
-            console.warn('takePicture ', data);
+            // const data = await this.camera.takePictureAsync();
+            // console.warn('takePicture ', data);
+            this.detectText()
         }
     };
 
@@ -256,7 +287,7 @@ export default class DetectWithCamera extends React.Component {
                 ratio={this.state.ratio}
                 focusDepth={this.state.depth}
                 trackingEnabled
-                
+
                 androidCameraPermissionOptions={{
                     title: 'Permission to use camera',
                     message: 'We need your permission to use your camera',

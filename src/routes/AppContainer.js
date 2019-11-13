@@ -9,8 +9,8 @@ import SplashScreen from 'screens/SplashScreen';
 import DrawerStack from './DrawerStack';
 
 const appNavigator = createAnimatedSwitchNavigator({
-  [screenName.AuthenStack]: { screen: AuthenStack },
   [screenName.HomeStack]: { screen: DrawerStack },
+  [screenName.AuthenStack]: { screen: AuthenStack },
   [screenName.SplashScreen]: { screen: SplashScreen },
 }, {
   transition: (

@@ -14,6 +14,7 @@ import {
 import Container from 'library/Container';
 import CanvasSketch from 'screens/CanvasSketch';
 import { getLogin } from 'configs/apis/requestAuthen';
+import DetectWithCamera from 'screens/DetectWithCamera';
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -25,7 +26,7 @@ class HomeScreen extends Component {
 
     render() {
         return (
-            <CanvasSketch />
+            <DetectWithCamera />
         );
     }
 }
