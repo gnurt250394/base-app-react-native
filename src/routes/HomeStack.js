@@ -14,6 +14,7 @@ import ChangePassScreen from 'screens/AccountScreen/ChangePassScreen';
 import GetAllSickScreen from 'screens/HomeScreen/GetAllSickScreen';
 import VoiceScreen from 'screens/Voice/VoiceScreen';
 import TextToSpeech from 'screens/Voice/TextToSpeech';
+import CanvasScreen from 'screens/Voice/CanvasScreen';
 const handleCustomTransition = ({ scenes }) => {
     const prevScene = scenes[scenes.length - 2];
     const nextScene = scenes[scenes.length - 1];
@@ -39,8 +40,9 @@ const homeStack = createStackNavigator({
     [screenName.GetAllSickScreen]: { screen: GetAllSickScreen },
     [screenName.VoiceScreen]: { screen: VoiceScreen },
     [screenName.TextToSpeech]: { screen: TextToSpeech },
+    [screenName.CanvasScreen]: { screen: CanvasScreen },
 }, {
-    initialRouteName: screenName.VoiceScreen,
+    initialRouteName: screenName.CanvasScreen,
     headerMode: 'none',
     transitionConfig: (transitionProps) => handleCustomTransition(transitionProps),
 })

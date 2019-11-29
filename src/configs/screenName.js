@@ -38,5 +38,6 @@ export default {
     HistoryMessage:'HistoryMessage',
     GetAllSickScreen:'Chọn bệnh muốn hỗ trợ',
     VoiceScreen:'VoiceScreen',
-    TextToSpeech:'TextToSpeech'
+    TextToSpeech:'TextToSpeech',
+    CanvasScreen:'CanvasScreen'
 }

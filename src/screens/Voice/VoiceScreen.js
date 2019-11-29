@@ -49,6 +49,10 @@ class VoiceScreen extends Component {
             );
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                 console.log('You can use the camera');
+                let voice = await Voice.isRecognizing()
+                console.log('voice: ', voice);
+
+                // this._startRecognizing()
             } else {
                 console.log('Camera permission denied');
             }
@@ -92,6 +96,7 @@ class VoiceScreen extends Component {
     onSpeechResults = e => {
         // eslint-disable-next-line
         console.log('onSpeechResults: ', e);
+
         this.setState({
             results: e.value,
         });
@@ -125,7 +130,11 @@ class VoiceScreen extends Component {
         });
 
         try {
-            await Voice.start('vi-VN');
+            await Voice.start('vi-VN', {
+                "RECOGNIZER_ENGINE": "GOOGLE",
+                "EXTRA_PARTIAL_RESULTS": true
+            });
+            // console.log('voice: ', voice);
         } catch (e) {
             //eslint-disable-next-line
             console.error(e);
