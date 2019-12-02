@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Slider } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
 import { RNCamera } from 'react-native-camera';
-import RNTextDetector from "react-native-text-detector";
 const flashModeOrder = {
     off: 'on',
     on: 'auto',
@@ -58,8 +57,6 @@ export default class DetectWithCamera extends React.Component {
                 skipProcessing: true,
             };
             const images = await this.camera.takePictureAsync(options);
-            const visionResp = await RNTextDetector.detectFromUri(images.uri);
-            console.log('visionResp', visionResp);
         } catch (e) {
             console.warn(e);
         }
@@ -217,7 +214,6 @@ export default class DetectWithCamera extends React.Component {
     );
 
     renderTextBlock = ({ bounds, value }) => {
-        console.log('value: ', value);
         return (<React.Fragment key={value + bounds.origin.x}>
             <Text style={[styles.textBlock, { left: bounds.origin.x, top: bounds.origin.y }]}>
                 {value}
@@ -250,7 +246,6 @@ export default class DetectWithCamera extends React.Component {
     );
 
     renderBarcode = ({ bounds, data, type }) => {
-        console.log('data: ', data);
         return (
             <React.Fragment key={data + bounds.origin.x}>
                 <View
