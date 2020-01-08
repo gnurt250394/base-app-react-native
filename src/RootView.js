@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput } from 'react-native'
+import { Text, View, StyleSheet, TextInput, StatusBar } from 'react-native'
 import R from 'res/R'
 
 class RootView extends Component {
@@ -13,31 +13,25 @@ class RootView extends Component {
     let components = [Text, TextInput]
     const customProps = {
       style: {
-        fontFamily: R.fonts.Light,
+        fontFamily: R.fonts.Regular,
         color: R.colors.black
       }
     }
     for (let i = 0; i < components.length; i++) {
       const TextRender = components[i].render;
-      const initialDefaultProps = components[i].defaultProps;
-      components[i].defaultProps = {
-        ...initialDefaultProps,
-        ...customProps,
-      }
-      components[i].render = function render() {
-        let oldProps = this.props;
-
-        this.props = { ...this.props, style: [customProps.style, this.props && this.props.style && this.props.style] };
-        try {
-          return TextRender.apply(this, arguments);
-        } finally {
-          this.props = oldProps;
-        }
+      components[i].render = function (...args) {
+        let origin = TextRender.call(this, ...args);
+        return React.cloneElement(origin, {
+          style: StyleSheet.flatten([customProps, origin.props.style])
+        });
       };
     }
   }
   render() {
-    return <View style={styles.container}>{this.props.children}</View>
+    return <View style={styles.container}>
+      <StatusBar backgroundColor={R.colors.defaultColor} />
+      {this.props.children}
+    </View>
   }
 }
 const styles = StyleSheet.create({
