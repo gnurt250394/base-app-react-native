@@ -37,5 +37,7 @@ export default {
     DetailDrugScreen:'Chi tiết đơn thuốc',
     TabDoctor:'TabDoctor',
     HistoryMessage:'HistoryMessage',
-    GetAllSickScreen:'Chọn bệnh muốn hỗ trợ'
+    GetAllSickScreen:'Chọn bệnh muốn hỗ trợ',
+    VideoCall:'VideoCall',
+    SelectRoomScreen:'SelectRoomScreen'
 }

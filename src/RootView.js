@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TextInput, StatusBar } from 'react-native'
 import R from 'res/R'
-
+import VideoCall from 'screens/community/VideoCall';
 class RootView extends Component {
 
   constructor(props) {
@@ -24,7 +24,7 @@ class RootView extends Component {
         ...initialDefaultProps,
         ...customProps,
       }
-      components[i].render =function render () {
+      components[i].render = function render() {
         let oldProps = this.props;
 
         this.props = { ...this.props, style: [customProps.style, this.props && this.props.style ? this.props.style : null] };
@@ -38,9 +38,10 @@ class RootView extends Component {
   }
   render() {
     return <View style={styles.container}>
-    <StatusBar backgroundColor={R.colors.defaultColor} />
-      {this.props.children}
-      </View>
+      <StatusBar backgroundColor={R.colors.defaultColor} />
+      {/* {this.props.children} */}
+      <VideoCall />
+    </View>
   }
 }
 const styles = StyleSheet.create({

@@ -14,6 +14,7 @@ export default {
         ic_back_arrow: require('res/images/icons/ic_back_arrow.png'),
         ic_checked: require('res/images/icons/ic_checked.png'),
         ic_doctor: require('res/images/icons/ic_doctor.jpg'),
+        switch_camera: require('res/images/icons/switch_camera.png'),
         profile:{
         ic_logout: require('res/images/icons/profile/ic_logout.png'),
         ic_pass: require('res/images/icons/profile/ic_pass.png'),

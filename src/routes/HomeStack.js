@@ -36,6 +36,8 @@ import InputPhone from 'screens/Register/InputPhone';
 import OtpScreen from 'screens/Register/OtpScreen';
 import TestScreen from 'screens/Test/TestScreen';
 import TestResultScreen from 'screens/Test/TestResultScreen';
+import VideoCall from 'screens/community/VideoCall';
+import SelectRoomScreen from 'screens/VideoCall/SelectRoomScreen';
 const handleCustomTransition = ({ scenes }) => {
     const prevScene = scenes[scenes.length - 2];
     const nextScene = scenes[scenes.length - 1];
@@ -79,6 +81,8 @@ const homeStack = createStackNavigator({
     [screenName.DetailDrugScreen]: { screen: DetailDrugScreen },
     [screenName.TabDoctor]: { screen: AdvisoryScreen },
     [screenName.GetAllSickScreen]: { screen: GetAllSickScreen },
+    [screenName.VideoCall]: { screen: VideoCall },
+    [screenName.SelectRoomScreen]: { screen: SelectRoomScreen },
     //authen
     // [screenName.LoginScreen]: { screen: LoginScreen },
     // [screenName.RegisterScreen]: { screen: RegisterScreen },
@@ -90,7 +94,7 @@ const homeStack = createStackNavigator({
     // [screenName.TestResultScreen]: { screen: TestResultScreen },
 
 }, {
-    initialRouteName: screenName.HomeScreen,
+    initialRouteName: screenName.SelectRoomScreen,
     headerMode: 'none',
     transitionConfig: (transitionProps) => handleCustomTransition(transitionProps),
 })

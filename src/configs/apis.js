@@ -9,7 +9,7 @@ import { showLoading, hideLoading } from 'library/Loading/LoadingComponent'
 // export const BASE_SOCKET = 'http://10.0.40.13:3001'
 const BASE_URL = 'https://app-hackathon-2019.herokuapp.com/api/'
 export const BASE_URI = 'https://app-hackathon-2019.herokuapp.com/'
-export const BASE_SOCKET = 'https://app-hackathon-2019.herokuapp.com:3001'
+const BASE_SOCKET = 'http://10.0.40.16:8000'
 
 const SERVER_TIMEOUT = 10000
 let constants = Axios.create({
@@ -227,5 +227,6 @@ export default {
   removeRequest,
   BASE_URI,
   BASE_URL,
+  BASE_SOCKET,
   postForm
 }
