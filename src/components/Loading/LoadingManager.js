@@ -18,5 +18,5 @@ class LoadingManager {
     }
   }
   
-  export default new LoadingManager();
+  export default new  LoadingManager();
   

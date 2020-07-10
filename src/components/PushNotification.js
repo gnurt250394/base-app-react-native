@@ -2,7 +2,6 @@ import firebase from 'react-native-firebase';
 import React from 'react'
 import { AppState, View, Platform } from 'react-native'
 // import LaunchApplication from 'react-native-launch-application';
-import RNCallKeepManager from './RNCallKeepManager'
 import utils from 'configs/utils';
 import apis from 'configs/apis';
 import NavigationServices from 'routes/NavigationServices';

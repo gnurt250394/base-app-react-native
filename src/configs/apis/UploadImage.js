@@ -1,6 +1,6 @@
 import apis from 'configs/apis'
 import utils from 'configs/utils';
-import { showLoading } from 'library/Loading/LoadingComponent';
+import { showLoading } from 'components/Loading/LoadingComponent';
 
 export const uploadImage = (file) => {
         const formData = new FormData();

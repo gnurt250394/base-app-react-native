@@ -1,71 +1,80 @@
 {
   "project_info": {
-    "project_number": "129032473628",
-    "firebase_url": "https://apptest-db176.firebaseio.com",
-    "project_id": "apptest-db176",
-    "storage_bucket": "apptest-db176.appspot.com"
+    "project_number": "250100493753",
+    "firebase_url": "https://test-42376.firebaseio.com",
+    "project_id": "test-42376",
+    "storage_bucket": "test-42376.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:129032473628:android:15293c54044ad6df16a3d9",
+        "mobilesdk_app_id": "1:250100493753:android:de717f1785e2f950875a68",
         "android_client_info": {
           "package_name": "com.baseappreactnative"
         }
       },
       "oauth_client": [
         {
-          "client_id": "129032473628-odc1tvbhbtf39b8ebdv33kraeqaulb8d.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.baseappreactnative",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "129032473628-5u7iq2v6qop17bes1ol8reulefhc2ljs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.baseappreactnative",
-            "certificate_hash": "7520b95a3c1e8d2d6ae85839c17e83b0b5d08a27"
-          }
-        },
-        {
-          "client_id": "129032473628-vs39037eqb89roidkldg74j83q60bfhv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.baseappreactnative",
-            "certificate_hash": "e233828d05720a4138394b156c6c2235bbcea521"
-          }
+          "client_id": "250100493753-1c41jk2p5evmono0buvm2qoma21gp11i.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAr1nuizsQydNYKR9LURBnL2oveqobu1Hc"
+          "current_key": "AIzaSyBmLrTNoCqWiQhW9HBErSD4W9FeC38EG2o"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250100493753-1c41jk2p5evmono0buvm2qoma21gp11i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "250100493753-ao7fen5gv97stq2me2u2cba65ilknr7j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.DemoCall"
+              }
+            }
+          ]
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:129032473628:android:15c96cd89e0d16ba16a3d9",
+        "mobilesdk_app_id": "1:250100493753:android:c368eaaad0092016875a68",
         "android_client_info": {
-          "package_name": "com.honghactest"
+          "package_name": "com.google.cloud.examples.dialogflow"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "250100493753-1c41jk2p5evmono0buvm2qoma21gp11i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAr1nuizsQydNYKR9LURBnL2oveqobu1Hc"
+          "current_key": "AIzaSyBmLrTNoCqWiQhW9HBErSD4W9FeC38EG2o"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250100493753-1c41jk2p5evmono0buvm2qoma21gp11i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "250100493753-ao7fen5gv97stq2me2u2cba65ilknr7j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.DemoCall"
+              }
+            }
+          ]
         }
       }
     }

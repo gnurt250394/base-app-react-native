@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         margin:4
     },
     txt: {
-        fontFamily:R.fonts.BlackItalic,
         fontSize:16,
         color:R.colors.textColor
     }

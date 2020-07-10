@@ -6,21 +6,21 @@
  * @flow
  */
 
-import React from 'react'
-import { StyleSheet, View, Text, AppRegistry } from 'react-native'
-import { Provider } from 'react-redux'
-import store from 'middlewares/stores'
-import * as Sentry from '@sentry/react-native'
-import { Transitioner } from 'react-navigation-stack'
-import RootView from './src/RootView'
-import NavigationServices from 'routes/NavigationServices'
-import AppContainer from 'routes/AppContainer'
-import FlashMessage from "react-native-flash-message";
-import LoadingComponent from 'library/Loading/LoadingComponent'
-import LoadingManager from 'library/Loading/LoadingManager'
-// Sentry.init({
-//   dsn: 'https://a12ca466e88843da82d0c48da3116a77@sentry.io/1763978'
-// })
+import React from 'react';
+import {StyleSheet, View, Text, AppRegistry} from 'react-native';
+import {Provider} from 'react-redux';
+import store from 'middlewares/stores';
+import {Transitioner} from 'react-navigation-stack';
+import RootView from './src/RootView';
+import NavigationServices from 'routes/NavigationServices';
+import AppContainer from 'routes/AppContainer';
+import FlashMessage from 'react-native-flash-message';
+import LoadingComponent from 'components/Loading/LoadingComponent';
+import LoadingManager from 'components/Loading/LoadingManager';
+import {persistStore} from 'redux-persist';
+import {PersistGate} from 'redux-persist/integration/react';
+import LoadingView from 'components/LoadingView';
+store.__PERSISTOR = persistStore(store);
 
 class App extends React.Component {
   componentDidMount() {
@@ -32,21 +32,20 @@ class App extends React.Component {
   }
   render() {
     return (
-      <Provider store={store} >
-        <RootView>
-
-          <AppContainer
-            uriPrefix="/app"
-            ref={ref => NavigationServices.setTopNavigator(ref)} />
-          <FlashMessage
-            position="top"
-          />
-          <LoadingComponent ref={ref => this.loadingRef = ref} />
-        </RootView>
+      <Provider store={store}>
+        <PersistGate loading={<LoadingView />} persistor={store.__PERSISTOR}>
+          <RootView>
+            <AppContainer
+              uriPrefix="/app"
+              ref={ref => NavigationServices.setTopNavigator(ref)}
+            />
+          </RootView>
+        </PersistGate>
+        <FlashMessage position="top" />
+        <LoadingComponent ref={ref => (this.loadingRef = ref)} />
       </Provider>
-    )
+    );
   }
 }
 
-
-export default App
+export default App;

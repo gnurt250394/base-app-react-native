@@ -6,9 +6,6 @@ import screenName from 'configs/screenName'
 import AuthenStack from './AuthenStack'
 import HomeStack from './HomeStack'
 import SplashScreen from 'screens/SplashScreen';
-import DrawerStack from './DrawerStack';
-import BottomTabStack from './BottomTabStack';
-import MaterialTab from './MaterialTab';
 
 const appNavigator = createAnimatedSwitchNavigator({
   [screenName.SplashScreen]: { screen: SplashScreen },

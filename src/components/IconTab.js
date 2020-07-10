@@ -30,7 +30,6 @@ class IconTab extends Component {
 const styles = StyleSheet.create({
     txtCOunt: {
         color: R.colors.white,
-        fontFamily: R.fonts.Bold,
         fontSize: 12
     },
     containerIcon: {

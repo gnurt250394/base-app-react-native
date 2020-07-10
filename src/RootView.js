@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TextInput, StatusBar } from 'react-native'
 import R from 'res/R'
+import 'moment/locale/vi'
 
 class RootView extends Component {
 
   constructor(props) {
     super(props)
-    this.SetDefaultText()
+    // this.SetDefaultText()
 
   }
   SetDefaultText = () => {
     let components = [Text, TextInput]
     const customProps = {
       style: {
-        fontFamily: R.fonts.Regular,
         color: R.colors.black
       }
     }

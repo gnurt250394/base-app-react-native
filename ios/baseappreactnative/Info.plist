@@ -39,8 +39,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Your message to user when the camera is accessed for the first time</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your message to user when the microphone is accessed for the first time</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Your message to user when the photo library is accessed for the first time</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your message to user when the photo library is accessed for the first time</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -55,24 +63,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>Your message to user when the camera is accessed for the first time</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Your message to user when the photo library is accessed for the first time</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Your message to user when the microphone is accessed for the first time</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Your message to user when the photo library is accessed for the first time</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Merriweather-Black.ttf</string>
-		<string>Merriweather-BlackItalic.ttf</string>
-		<string>Merriweather-Bold.ttf</string>
-		<string>Merriweather-BoldItalic.ttf</string>
-		<string>Merriweather-Italic.ttf</string>
-		<string>Merriweather-Light.ttf</string>
-		<string>Merriweather-LightItalic.ttf</string>
-		<string>Merriweather-Regular.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -87,47 +79,11 @@
 		<string>MaterialCommunityIcons.ttf</string>
 		<string>MaterialIcons.ttf</string>
 		<string>Octicons.ttf</string>
-		<string>SimpleLineIcons.ttf</string>
-		<string>Zocial.ttf</string>
 		<string>Roboto_medium.ttf</string>
 		<string>Roboto.ttf</string>
 		<string>rubicon-icon-font.ttf</string>
-		<string>SanFranciscoDisplay-Black.otf</string>
-		<string>SanFranciscoDisplay-Bold.otf</string>
-		<string>SanFranciscoDisplay-Heavy.otf</string>
-		<string>SanFranciscoDisplay-Light.otf</string>
-		<string>SanFranciscoDisplay-Medium.otf</string>
-		<string>SanFranciscoDisplay-Regular.otf</string>
-		<string>SanFranciscoDisplay-Semibold.otf</string>
-		<string>SanFranciscoDisplay-Thin.otf</string>
-		<string>SanFranciscoDisplay-Ultralight.otf</string>
-		<string>SanFranciscoText-Bold.otf</string>
-		<string>SanFranciscoText-BoldG1.otf</string>
-		<string>SanFranciscoText-BoldG2.otf</string>
-		<string>SanFranciscoText-BoldG3.otf</string>
-		<string>SanFranciscoText-BoldItalic.otf</string>
-		<string>SanFranciscoText-BoldItalicG1.otf</string>
-		<string>SanFranciscoText-BoldItalicG2.otf</string>
-		<string>SanFranciscoText-BoldItalicG3.otf</string>
-		<string>SanFranciscoText-Heavy.otf</string>
-		<string>SanFranciscoText-HeavyItalic.otf</string>
-		<string>SanFranciscoText-Italic.otf</string>
-		<string>SanFranciscoText-ItalicG1.otf</string>
-		<string>SanFranciscoText-ItalicG2.otf</string>
-		<string>SanFranciscoText-ItalicG3.otf</string>
-		<string>SanFranciscoText-Light.otf</string>
-		<string>SanFranciscoText-LightItalic.otf</string>
-		<string>SanFranciscoText-Medium.otf</string>
-		<string>SanFranciscoText-MediumItalic.otf</string>
-		<string>SanFranciscoText-Regular.otf</string>
-		<string>SanFranciscoText-RegularG1.otf</string>
-		<string>SanFranciscoText-RegularG2.otf</string>
-		<string>SanFranciscoText-RegularG3.otf</string>
-		<string>SanFranciscoText-Semibold.otf</string>
-		<string>SanFranciscoText-SemiboldItalic.otf</string>
-		<string>SanFranciscoText-Thin.otf</string>
-		<string>SanFranciscoText-ThinItalic.otf</string>
-		<string>UTM Bebas.otf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
 	</array>
 </dict>
 </plist>
